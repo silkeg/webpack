@@ -1,17 +1,13 @@
 const path = require('path');
-const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
-    entry: './src/js/main/index.js',
-    output: {
-        path: path.join(__dirname, 'dist'),
-        filename: 'bundle.js'
-    },
     mode: 'development',
+    entry: './src/main/js/index.js',
     module:{
         rules: [
             {
-                test: /\.m?js$/,
+                test: /\.js$/,
+                include: path.resolve(__dirname, 'src/js'),
                 exclude: /(node_modules|bower_components)/,
                 use: {
                     loader: 'babel-loader',
@@ -23,12 +19,26 @@ module.exports = {
             },
             {
                 test: /\.css$/i,
+                include: path.resolve(__dirname, 'src'),
                 exclude: /(node_modules|bower_components)/,
-                use: ["style-loader", "css-loader"],
+                use: ["style-loader", "css-loader", "postcss-loader"],
+            },
+            {
+                test: /\.scss$/i,
+                include: path.resolve(__dirname, 'src'),
+                exclude: /(node_modules|bower_components)/,
+                use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"],
+            },
+            { 
+                test: /\.(png|woff|woff2|eot|ttf|svg)$/, 
+                use: ['url-loader?limit=100000'],
             }
         ]
     },
-    // plugins: [new ESLintPlugin(options)],
+    output: {
+        path: path.join(__dirname, 'dist'),
+        filename: 'bundle.js'
+    },
     devServer: {
         static: {
           directory: path.join(__dirname, 'dist'),
