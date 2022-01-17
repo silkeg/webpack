@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "webpack course",
   "main": "index.js",
-  "scripts": {
-    "build": "webpack"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/silkeg/webpack.git"
@@ -23,7 +20,14 @@
     "@babel/core": "^7.16.7",
     "@babel/preset-env": "^7.16.8",
     "babel-loader": "^8.2.3",
+    "eslint": "^8.7.0",
+    "eslint-webpack-plugin": "^3.1.1",
     "webpack": "^5.66.0",
-    "webpack-cli": "^4.9.1"
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.7.3"
+  },
+  "scripts": {
+    "build": "webpack",
+    "server": "webpack-dev-server"
   }
 }
