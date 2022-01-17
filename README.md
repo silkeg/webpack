@@ -1,17 +1,17 @@
 # webpack Documentation
 
-##Projektordner anlegen 
+## Projektordner anlegen 
 → npm init
 
 → npm install --save-dev webpack
 → npm install --save-dev webpack-cli
 
-###packet.jason:
+### packet.jason:
 „scripts“: {
 „build“: „webpack“
 }
 
-##webpack.config.js anlegen:
+## webpack.config.js anlegen:
 https://webpack.js.org/guides/development/
 
 var path = require('path');
@@ -26,11 +26,11 @@ module.exports = {
 npm run oder npm run build
 
 
-##Loaders
+## Loaders
 https://webpack.js.org/loaders/#awesome	
 
 
-###babel:
+### babel
 https://webpack.js.org/loaders/babel-loader/
 
 npm install -D babel-loader @babel/core @babel/preset-env webpack
@@ -51,11 +51,11 @@ module: {
   ]
 }
 
-###eslint
+### eslint
 https://webpack.js.org/plugins/eslint-webpack-plugin/
 
 
-###devserver
+### devserver
 https://webpack.js.org/configuration/dev-server/
 
 npm install webpack-dev-server –save-dev
@@ -76,7 +76,7 @@ devServer: {
 },
 
 	
-###CSS
+### CSS
 https://webpack.js.org/loaders/css-loader/
 
 npm install css-loader style-loader --save-dev 
@@ -93,11 +93,11 @@ js file:
 import "./style.css";
 
 
-###Für fonts und img Loader
+### Für fonts und img Loader
+https://stackoverflow.com/questions/45489897/load-fonts-with-webpack-and-font-face
 
 npm install url-loader file-loader --save-dev
 
-https://stackoverflow.com/questions/45489897/load-fonts-with-webpack-and-font-face
 
 rules: [
     { 
@@ -107,7 +107,7 @@ rules: [
 ]
 
 
-###sass
+### sass
 npm install sass-loader sass webpack --save-dev 
 rules: [
     {
@@ -121,7 +121,7 @@ js file:
 import "./style.scss";
 
 
-###postCss
+### postCss
 https://webpack.js.org/loaders/postcss-loader/
 
 npm install postcss postcss-loader postcss-preset-env --save-dev
@@ -135,7 +135,7 @@ rules: [
 ]
 
 
-###tailwind
+### tailwind
 https://levelup.gitconnected.com/setup-tailwind-css-with-webpack-3458be3eb547
 
 npm install --save-dev tailwindcss
