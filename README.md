@@ -27,7 +27,7 @@ npm run oder npm run build
 
 
 ## Loaders
-https://webpack.js.org/loaders/#awesome	
+https://webpack.js.org/loaders/
 
 
 ### babel
@@ -93,20 +93,6 @@ js file:
 import "./style.css";
 
 
-### Für fonts und img Loader
-https://stackoverflow.com/questions/45489897/load-fonts-with-webpack-and-font-face
-
-npm install url-loader file-loader --save-dev
-
-
-rules: [
-    { 
-        test: /\.(png|woff|woff2|eot|ttf|svg)$/, 
-        use: ['url-loader?limit=100000'],
-    }
-]
-
-
 ### sass
 npm install sass-loader sass webpack --save-dev 
 rules: [
@@ -141,4 +127,39 @@ https://levelup.gitconnected.com/setup-tailwind-css-with-webpack-3458be3eb547
 npm install --save-dev tailwindcss
 
 
+### font awesome
+https://bytepursuits.com/using-webpack-5-with-font-awesome-5
 
+npm install --save @fortawesome/fontawesome-free
+
+{
+    test: /\.(svg|eot|woff|woff2|ttf)$/,
+    type: 'asset/resource',
+    generator: {
+        //publicPath: '../fonts/',
+        filename: 'compiled/fonts/[hash][ext][query]'
+    }
+}
+
+css:
+$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
+@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";
+@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+
+
+
+
+
+
+### Für fonts und img Loader:
+
+https://stackoverflow.com/questions/45489897/load-fonts-with-webpack-and-font-face
+
+npm install url-loader file-loader --save-dev
+
+rules: [
+    { 
+        test: /\.(png|woff|woff2|eot|ttf|svg)$/, 
+        use: ['url-loader?limit=100000'],
+    }
+]

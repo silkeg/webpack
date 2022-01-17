@@ -29,10 +29,14 @@ module.exports = {
                 exclude: /(node_modules|bower_components)/,
                 use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"],
             },
-            { 
-                test: /\.(png|woff|woff2|eot|ttf|svg)$/, 
-                use: ['url-loader?limit=100000'],
-            }
+            {
+                test: /\.(svg|eot|woff|woff2|ttf)$/,
+                type: 'asset/resource',
+                generator: {
+                  //publicPath: '../fonts/',
+                  filename: 'compiled/fonts/[hash][ext][query]'
+                }
+             },
         ]
     },
     output: {

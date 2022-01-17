@@ -38,5 +38,8 @@
   "scripts": {
     "build": "webpack",
     "server": "webpack-dev-server"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4"
   }
 }
