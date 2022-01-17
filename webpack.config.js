@@ -2,7 +2,7 @@ const path = require('path');
 const ESLintPlugin = require('eslint-webpack-plugin');
 
 module.exports = {
-    entry: './src/js/index.js',
+    entry: './src/js/main/index.js',
     output: {
         path: path.join(__dirname, 'dist'),
         filename: 'bundle.js'
@@ -20,6 +20,11 @@ module.exports = {
                         plugins: ['@babel/plugin-proposal-object-rest-spread']
                     }
                 }
+            },
+            {
+                test: /\.css$/i,
+                exclude: /(node_modules|bower_components)/,
+                use: ["style-loader", "css-loader"],
             }
         ]
     },
