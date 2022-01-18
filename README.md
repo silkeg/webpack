@@ -1,10 +1,10 @@
 # webpack Documentation
 
 ## Projektordner anlegen 
-→ npm init
+-> npm init
 
-→ npm install --save-dev webpack  
-→ npm install --save-dev webpack-cli  
+-> npm install --save-dev webpack  
+-> npm install --save-dev webpack-cli  
 
 ### packet.jason:
 „scripts“: {  
@@ -151,23 +151,32 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 
 
 ### Für fonts und img Loader:   
+https://webpack.js.org/guides/asset-modules/  
+https://stackoverflow.com/questions/45489897/load-fonts-with-webpack-and-font-face   
 mit der Konfiguration wandelt der URL Loader Fils kleiner denn 100kb in base64 um,
 ist größer dann wird der File vom Server geladen  
-
-https://stackoverflow.com/questions/45489897/load-fonts-with-webpack-and-font-face  
+ 
 
 npm install url-loader file-loader --save-dev  
   
 rules: [  
-    {   
-        test: /\.(png|woff|woff2|eot|ttf|svg)$/,    
-        use: ['url-loader?limit=100000'],  
-    }  
+    {
+        test: /\.(png|jpg|gif)$/i,
+        type: 'javascript/auto',
+        // use: ['url-loader?limit=100000'],
+        use: [
+            {
+            loader: 'url-loader',
+            options: {
+                limit: 8192,
+            }
+            },
+        ]
+    } 
 ]  
 
 
 ### Alias für Dateipfade
-
 webpack.config.js:  
 resolve: {  
     // extention: ['.js', 'scss', 'css'],  
@@ -175,3 +184,37 @@ resolve: {
         BaseCss: path.resolve(__dirname, 'src', 'base', 'css' )  
     }  
 },
+
+
+### multible entry points = chunks
+
+entry: {  
+    homepage: path.resolve(__dirname, 'src', 'pages', 'homepage'),  
+    impressum: path.resolve(__dirname, 'src', 'pages', 'impressum'),  
+},  
+-> name einfügen  
+ output: {  
+    path: path.join(__dirname, 'dist'),  
+    filename: '[name].bundle.js'  
+},  
+
+### css multible fils
+https://v4.webpack.js.org/plugins/mini-css-extract-plugin/
+
+npm install --save-dev mini-css-extract-plugin
+
+! Do not use together style-loader and mini-css-extract-plugin.
+
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+module.exports = {
+  plugins: [new MiniCssExtractPlugin()],
+  module: {
+    rules: [
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: [ MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", "sass-loader", ],
+      },
+    ],
+  },
+};
