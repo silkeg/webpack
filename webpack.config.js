@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
     mode: 'development',
-    entry: './src/main/js/index.js',
+    entry: './src/pages/homepage/index.js',
     module:{
         rules: [
             {
@@ -19,6 +19,7 @@ module.exports = {
             },
             {
                 test: /\.css$/i,
+                //include: path.resolve(__dirname, 'src', 'main', 'styles', 'css'),
                 include: path.resolve(__dirname, 'src'),
                 exclude: /(node_modules|bower_components)/,
                 use: ["style-loader", "css-loader", "postcss-loader"],
@@ -38,6 +39,12 @@ module.exports = {
                 }
              },
         ]
+    },
+    resolve: {
+        // extention: ['.js', 'scss', 'css'],
+        alias:{
+            BaseCss: path.resolve(__dirname, 'src', 'base', 'css' )
+        }
     },
     output: {
         path: path.join(__dirname, 'dist'),
