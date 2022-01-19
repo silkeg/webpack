@@ -1,13 +1,29 @@
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const { mainModule } = require('process');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { Hash } = require('crypto');
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
+
+const devMode = process.env.WEBPACK_MODE === "production";
 
 module.exports = {
-    mode: 'development',
+    mode: 'none',
+    // mode: devMode,
+    devtool: devMode ? "source-map" : false,
     // entry: './src/pages/homepage/index.js',
     entry: {
-        // homepage: path.resolve(__dirname, 'src', 'base'),
-        homepage: path.resolve(__dirname, 'src', 'pages', 'homepage'),
-        impressum: path.resolve(__dirname, 'src', 'pages', 'impressum'),
+        index: {
+            import: path.resolve(__dirname, 'src', 'pages', 'homepage'),
+            dependOn: 'shared',
+        },
+        impressum: {
+            import: path.resolve(__dirname, 'src', 'pages', 'homepage'),
+            dependOn: 'shared',
+        },
+        // shared: ["jquery", "react"],
+        shared: path.resolve(__dirname, 'src', 'base', 'js', 'main.js'),
     },
     module:{
         rules: [
@@ -25,24 +41,25 @@ module.exports = {
             },
             {
                 test: /\.css$/i,
-                //include: path.resolve(__dirname, 'src', 'main', 'styles', 'css'),
                 include: path.resolve(__dirname, 'src'),
                 exclude: /(node_modules|bower_components)/,
                 // use: ["style-loader", "css-loader", "postcss-loader"],
-                use: [MiniCssExtractPlugin.loader, "css-loader"],
+                // use: [MiniCssExtractPlugin.loader, { loader: "css-loader", options: { sourceMap: devMode ? true : false } }],
+                use: [MiniCssExtractPlugin.loader, "css-loader" ],
             },
             {
                 test: /\.scss$/i,
                 include: path.resolve(__dirname, 'src'),
                 exclude: /(node_modules|bower_components)/,
                 // use: ["style-loader", "css-loader", "postcss-loader", "sass-loader"],
+                // use: [ MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", { loader: "sass-loader", options: { sourceMap: devMode ? true : false } }, ],
                 use: [ MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", "sass-loader", ],
             },
             {
                 test: /\.(svg|eot|woff|woff2|ttf)$/,
                 type: 'asset/resource',
                 generator: {
-                  //publicPath: '../fonts/',
+                //   publicPath: './fonts/',
                   filename: 'compiled/fonts/[hash][ext][query]'
                 },
             },
@@ -62,21 +79,86 @@ module.exports = {
         ]
     },
     resolve: {
-        // extention: ['.js', 'scss', 'css'],
         alias:{
             BaseCss: path.resolve(__dirname, 'src', 'base', 'css' )
         }
     },
+    optimization: {
+        // runtimeChunk: 'single', // for multiple entry points
+        splitChunks: {
+            chunks: 'all',
+        },
+        minimize: devMode ? true : false,
+        minimizer: [
+            new CssMinimizerPlugin({
+                test: /\.css$/i,
+                minimizerOptions: {
+                    preset: [
+                        "default",
+                        {
+                            discardComments: { removeAll: true },
+                        },
+                    ],
+                },
+            }),
+            new TerserPlugin({
+                test: /\.js$/i,
+                // bringt nix
+                terserOptions: {
+                    // mangle: false, // = default, damit keine Variablen umbenannt werden beim minify
+                    format: {
+                        comments: false,
+                        preamble: devMode ? "/* minified */" : "",
+                    },
+                },
+            }),
+        ],
+    },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: "[name].css",
+            filename: devMode ? "[name].[hash].css" : "[name].css",
             chunkFilename: "[id].css",
             ignoreOrder: false, // Enable to remove warnings about conflicting order
-          })
+        }),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, 'src', 'base', 'template', 'index.html'),
+            hash: true,
+            inject: 'body',
+            chunks: ['index', 'shared'],
+            filename: 'index.html',
+            // favicon: '',
+            minify:  devMode ? {
+                collapseWhitespace: true,
+                keepClosingSlash: true,
+                removeComments: true,
+                // removeRedundantAttributes: true,
+                // removeScriptTypeAttributes: true,
+                // removeStyleLinkTypeAttributes: true,
+                useShortDoctype: true
+            } : { }
+        }),
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, 'src', 'base', 'template', 'index.html'),
+            hash: true,
+            inject: 'body',
+            chunks: ['impressum', 'shared'],
+            filename: 'impressum.html',
+            // favicon: '',
+            minify: devMode ? {
+                collapseWhitespace: true,
+                keepClosingSlash: true,
+                removeComments: true,
+                // removeRedundantAttributes: true,
+                // removeScriptTypeAttributes: true,
+                // removeStyleLinkTypeAttributes: true,
+                useShortDoctype: true
+            } : { }
+        }),
     ],
     output: {
         path: path.join(__dirname, 'dist'),
-        filename: '[name].bundle.js'
+        filename: devMode ? '[name].[hash].bundle.js' : '[name].bundle.js',
+        clean: true,
     },
     devServer: {
         static: {

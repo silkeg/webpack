@@ -51,9 +51,6 @@ module: {
   ]  
 }  
 
-### eslint
-https://webpack.js.org/plugins/eslint-webpack-plugin/  
-
 
 ### devserver
 https://webpack.js.org/configuration/dev-server/  
@@ -123,12 +120,6 @@ rules: [
 ]  
 
 
-### tailwind
-https://levelup.gitconnected.com/setup-tailwind-css-with-webpack-3458be3eb547  
-
-npm install --save-dev tailwindcss  
-
-
 ### font awesome
 https://bytepursuits.com/using-webpack-5-with-font-awesome-5  
 
@@ -187,6 +178,8 @@ resolve: {
 
 
 ### multible entry points = chunks
+https://webpack.js.org/configuration/entry-context/#dependencies
+https://webpack.js.org/guides/code-splitting/
 
 entry: {  
     homepage: path.resolve(__dirname, 'src', 'pages', 'homepage'),  
@@ -198,8 +191,10 @@ entry: {
     filename: '[name].bundle.js'  
 },  
 
-### css multible fils
-https://v4.webpack.js.org/plugins/mini-css-extract-plugin/
+
+
+### css multible files
+https://webpack.js.org/plugins/mini-css-extract-plugin/
 
 npm install --save-dev mini-css-extract-plugin
 
@@ -213,8 +208,132 @@ module.exports = {
     rules: [
       {
         test: /\.(sa|sc|c)ss$/,
-        use: [ MiniCssExtractPlugin.loader, "css-loader", "postcss-loader", "sass-loader", ],
+        use: [ MiniCssExtractPlugin.loader , "css-loader", "postcss-loader", "sass-loader", ],
       },
     ],
   },
 };
+
+### -> split Js (L48)
+https://webpack.js.org/plugins/commons-chunk-plugin/
+
+plugins: [
+    new webpack.optimize.CommonsChunkPlugin(options);
+    new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery:  'jquery'
+    })
+],
+
+### Caching
+
+überall bei den files [chunkhash] einfürgen
+new MiniCssExtractPlugin({
+    filename: "[name].[chunkhash].css",
+    chunkFilename: "[id].css",
+    ignoreOrder: false, // Enable to remove warnings about conflicting order
+}),
+output: {
+    path: path.join(__dirname, 'dist'),
+    filename: '[name].[chunkhash].bundle.js'
+},
+
+-> erzeugt die HTML Seiten
+https://webpack.js.org/plugins/html-webpack-plugin/
+
+npm install --save-dev html-webpack-plugin
+
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+für jede Seite anlegen:  
+plugins: [  
+        new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, 'src', 'base', 'template', 'index.html'),
+            hash: true,
+            inject: 'body',
+            chunks: ['homepage'],
+            filename: 'index.html',
+        }), 
+],  
+
+
+### clear dist Ordner
+https://webpack.js.org/guides/output-management/
+
+https://github.com/jantimon/html-webpack-plugin#minification
+
+clean: true ergänzen
+output: {
+    path: path.join(__dirname, 'dist'),
+    filename: '[name].[hash].bundle.js',
+    clean: true,
+},
+
+
+### minify
+HTML:
+with html-webpack-plugin
+new HtmlWebpackPlugin({
+            template: path.resolve(__dirname, 'src', 'base', 'template', 'index.html'),
+            hash: true,
+            inject: 'body',
+            chunks: ['impressum'],
+            filename: 'impressum.html',
+            // favicon: '',
+            minify: {
+                collapseWhitespace: true,
+                keepClosingSlash: true,
+                removeComments: true,
+                // removeRedundantAttributes: true,
+                // removeScriptTypeAttributes: true,
+                // removeStyleLinkTypeAttributes: true,
+                useShortDoctype: true
+            }
+        }),
+
+
+CSS und sourcmap:
+https://webpack.js.org/plugins/css-minimizer-webpack-plugin/
+npm install css-minimizer-webpack-plugin --save-dev
+
+
+Uglify Javascript:
+https://webpack.js.org/plugins/terser-webpack-plugin/
+
+npm install terser-webpack-plugin --save-dev
+
+https://stackoverflow.com/questions/58000019/using-terser-webpack-plugin-how-to-avoid-building-with-comments
+
+sourcmap:
+https://webpack.js.org/configuration/devtool/
+
+(
+https://github.com/terser/terser#minify-options
+https://webpack.js.org/plugins/source-map-dev-tool-plugin/
+https://webpack.js.org/plugins/eval-source-map-dev-tool-plugin/
+)
+
+
+
+
+### development and production Enviroment
+https://webpack.js.org/guides/environment-variables/
+-> geht noch nicht "npm run build-prod"
+
+### http server
+https://www.npmjs.com/package/http-server
+
+### static site generator
+https://surge.sh/
+
+### eslint
+https://webpack.js.org/plugins/eslint-webpack-plugin/  
+
+### Prettier
+
+### tailwind
+https://levelup.gitconnected.com/setup-tailwind-css-with-webpack-3458be3eb547  
+
+npm install --save-dev tailwindcss  
+
+### Lazy Loading
+https://webpack.js.org/guides/lazy-loading/
