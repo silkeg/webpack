@@ -45,7 +45,7 @@ module.exports = {
                 exclude: /(node_modules|bower_components)/,
                 // use: ["style-loader", "css-loader", "postcss-loader"],
                 // use: [MiniCssExtractPlugin.loader, { loader: "css-loader", options: { sourceMap: devMode ? true : false } }],
-                use: [MiniCssExtractPlugin.loader, "css-loader" ],
+                use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
             },
             {
                 test: /\.scss$/i,
