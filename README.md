@@ -63,7 +63,8 @@ npm install webpack-dev-server –save-dev
 package.json:  
 "scripts": {  
  "build": "webpack",  
- "server": "webpack-dev-server"  
+ "server": "webpack-dev-server",
+ "server-prod": "npm run build; webpack-dev-server",
 }
 
 webpack.config.js:  
