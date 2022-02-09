@@ -6,15 +6,18 @@ const { Hash } = require("crypto");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 
-const devMode = process.env.WEBPACK_MODE === "development";
-// const devMode = process.env.WEBPACK_MODE === "production";
+// const devMode = process.env.WEBPACK_MODE === "development";
+// "development" -> true
+// "production" -> false
+const devMode = true;
 
 module.exports = {
-  // mode: "none",
-  // mode: "production",
-  mode: "development",
+  mode: devMode ? "development" : "production",
   devtool: devMode ? "source-map" : false,
   // entry: './src/pages/homepage/index.js',
+  performance: {
+    hints: devMode ? "warning" : false,
+  },
   entry: {
     index: {
       import: path.resolve(__dirname, "src", "pages", "homepage"),
@@ -65,9 +68,10 @@ module.exports = {
       {
         test: /\.(svg|eot|woff|woff2|ttf)$/,
         type: "asset/resource",
+        // type: "asset/inline",
         generator: {
           //   publicPath: './fonts/',
-          filename: "compiled/fonts/[hash][ext][query]",
+          filename: devMode ? "fonts/[ext][query]" : "fonts/[hash][ext][query]",
         },
       },
       {
@@ -95,7 +99,7 @@ module.exports = {
     splitChunks: {
       chunks: "all",
     },
-    minimize: devMode ? true : false,
+    minimize: devMode ? false : true,
     minimizer: [
       new CssMinimizerPlugin({
         test: /\.css$/i,
@@ -115,7 +119,7 @@ module.exports = {
           // mangle: false, // = default, damit keine Variablen umbenannt werden beim minify
           format: {
             comments: false,
-            preamble: devMode ? "/* minified */" : "",
+            preamble: devMode ? "" : "/* minified */",
           },
         },
       }),
@@ -123,7 +127,7 @@ module.exports = {
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: devMode ? "[name].[hash].css" : "[name].css",
+      filename: devMode ? "[name].css" : "[name].[hash].css",
       chunkFilename: "[id].css",
       ignoreOrder: false, // Enable to remove warnings about conflicting order
     }),
@@ -135,13 +139,14 @@ module.exports = {
         "template",
         "index.html"
       ),
-      hash: true,
+      hash: devMode ? false : true,
       inject: "body",
       chunks: ["index", "shared"],
       filename: "index.html",
       // favicon: '',
       minify: devMode
-        ? {
+        ? {}
+        : {
             collapseWhitespace: true,
             keepClosingSlash: true,
             removeComments: true,
@@ -149,8 +154,7 @@ module.exports = {
             // removeScriptTypeAttributes: true,
             // removeStyleLinkTypeAttributes: true,
             useShortDoctype: true,
-          }
-        : {},
+          },
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(
@@ -160,13 +164,14 @@ module.exports = {
         "template",
         "index.html"
       ),
-      hash: true,
+      hash: devMode ? false : true,
       inject: "body",
       chunks: ["impressum", "shared"],
       filename: "impressum.html",
       // favicon: '',
       minify: devMode
-        ? {
+        ? {}
+        : {
             collapseWhitespace: true,
             keepClosingSlash: true,
             removeComments: true,
@@ -174,13 +179,12 @@ module.exports = {
             // removeScriptTypeAttributes: true,
             // removeStyleLinkTypeAttributes: true,
             useShortDoctype: true,
-          }
-        : {},
+          },
     }),
   ],
   output: {
     path: path.join(__dirname, "dist"),
-    filename: devMode ? "[name].[hash].bundle.js" : "[name].bundle.js",
+    filename: devMode ? "[name].bundle.js" : "[name].[hash].bundle.js",
     //filename: "[name].[contenthash].bundle.js",
     //publicPath: "dist/js/",
     clean: true,

@@ -34,3 +34,4 @@ __webpack_require__.r(__webpack_exports__);
 /******/ var __webpack_exports__ = (__webpack_exec__("./src/pages/impressum/index.js"));
 /******/ }
 ]);
+//# sourceMappingURL=impressum.bundle.js.map

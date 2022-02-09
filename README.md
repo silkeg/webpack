@@ -69,7 +69,7 @@ package.json:
 "scripts": {  
  "build": "webpack",  
  "server": "webpack-dev-server",
- "server-prod": "npm run build; webpack-dev-server",
+"server-prod": "npm run build; webpack-dev-server",
 }
 
 webpack.config.js:  
@@ -145,9 +145,10 @@ npm install --save @fortawesome/fontawesome-free
 }
 
 css:  
-$fa-font-path: "~@fortawesome/fontawesome-free/webfonts";  
-@import "~@fortawesome/fontawesome-free/scss/fontawesome.scss";  
-@import "~@fortawesome/fontawesome-free/scss/solid.scss";
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/regular';
 
 ### Für fonts und img Loader:
 
@@ -396,3 +397,11 @@ plugins: [],
 https://webpack.js.org/guides/lazy-loading/
 
 ### autoprefixer
+
+### WebpackHinweise
+
+performance: {
+hints: false,
+},
+
+https://webpack.js.org/configuration/performance/

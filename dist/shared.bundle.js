@@ -1,20 +1,5 @@
 /******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
-/******/ 	var __webpack_modules__ = ({
-
-/***/ "./src/base/css/vendor.scss":
-/*!**********************************!*\
-  !*** ./src/base/css/vendor.scss ***!
-  \**********************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-// extracted by mini-css-extract-plugin
-
-
-/***/ })
-
-/******/ 	});
+/******/ 	var __webpack_modules__ = ({});
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
@@ -147,16 +132,12 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
-(() => {
 /*!*****************************!*\
   !*** ./src/base/js/main.js ***!
   \*****************************/
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var BaseCss_vendor_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! BaseCss/vendor.scss */ "./src/base/css/vendor.scss");
- // console.log('Umgebung: ' + process.env.NODE_ENV);
-})();
-
+// import 'BaseCss/vendor.scss';
+// console.log('Umgebung: ' + process.env.NODE_ENV);
 __webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ })()
 ;
+//# sourceMappingURL=shared.bundle.js.map
