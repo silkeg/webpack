@@ -7,11 +7,16 @@
 -> npm install --save-dev webpack  
 -> npm install --save-dev webpack-cli
 
+oder
+
+-> npm install --save-dev webpack webpack-cli
+
 ### packet.jason:
 
 „scripts“: {  
- „build“: „webpack“  
+ „build“: „webpack“
 }
+//„build:production“: „webpack --config webpack.config.prod.js“ // fals man ein zweiten ConfigFile hat und diesen anstoßen will
 
 ## webpack.config.js anlegen:
 
@@ -58,7 +63,7 @@ module: {
 
 https://webpack.js.org/configuration/dev-server/
 
-npm install webpack-dev-server –save-dev
+npm install webpack-dev-server --save-dev
 
 package.json:  
 "scripts": {  
@@ -69,7 +74,8 @@ package.json:
 
 webpack.config.js:  
 devServer: {  
- static: {  
+ //contentBase: './'
+static: {  
  directory: path.join(\_\_dirname, 'dist'),  
  },  
  compress: true,  
@@ -270,6 +276,14 @@ filename: '[name].[hash].bundle.js',
 clean: true,
 },
 
+oder in dem man das Plug in installiert:
+npm install --save-dev clean-webpack-plugin
+
+const CleanPlugin = require ('clean-webpack-plugin'); // oben
+plugins: [
+new CleanPlugin.CleanWebpackPlugin();
+]
+
 ### minify
 
 HTML:
@@ -329,13 +343,53 @@ https://surge.sh/
 
 https://webpack.js.org/plugins/eslint-webpack-plugin/
 
+npm install --save-dev eslint
+
+VS Code -> Extentions - ESLint
+
+-> appel + P -> Create ESLint configuration oder:
+-> npm init @eslint/config
+
+https://eslint.org/docs/user-guide/configuring  
+https://eslint.org/docs/rules/
+
 ### Prettier
+
+-> im VS Code -> Extention
 
 ### tailwind
 
 https://levelup.gitconnected.com/setup-tailwind-css-with-webpack-3458be3eb547
 
 npm install --save-dev tailwindcss
+
+https://tailwindcss.com/docs/installation
+
+https://tailwindcss.com/docs/content-configuration
+
+https://levelup.gitconnected.com/setup-tailwind-css-with-webpack-3458be3eb547
+
+Ordnerstruktur:
+
+dist -> style.css + index.html
+src -> style.css -> da muss rein: @tailwind base; @tailwind components; @tailwind utilities;
+
+npx tailwindcss init
+
+module.exports = {
+content: [
+'./dist/*.{html,js}'
+],
+theme: {
+extend: {},
+},
+plugins: [],
+}
+
+"scripts": {
+"test": "echo \"Error: no test specified\" && exit 1",
+"build": "tailwindcss -i ./src/style.css -o ./dist/style.css --watch"
+},
 
 ### Lazy Loading
 

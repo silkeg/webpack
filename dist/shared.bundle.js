@@ -1,8 +1,11 @@
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
-/******/ 	var __webpack_modules__ = ([
-/* 0 */,
-/* 1 */
+/******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/base/css/vendor.scss":
+/*!**********************************!*\
+  !*** ./src/base/css/vendor.scss ***!
+  \**********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -10,7 +13,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 /***/ })
-/******/ 	]);
+
+/******/ 	});
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
@@ -96,7 +100,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 		// undefined = chunk not loaded, null = chunk preloaded/prefetched
 /******/ 		// [resolve, reject, Promise] = chunk loading, 0 = chunk loaded
 /******/ 		var installedChunks = {
-/******/ 			2: 0
+/******/ 			"shared": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -145,8 +149,11 @@ __webpack_require__.r(__webpack_exports__);
 var __webpack_exports__ = {};
 // This entry need to be wrapped in an IIFE because it need to be isolated against other modules in the chunk.
 (() => {
+/*!*****************************!*\
+  !*** ./src/base/js/main.js ***!
+  \*****************************/
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var BaseCss_vendor_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var BaseCss_vendor_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! BaseCss/vendor.scss */ "./src/base/css/vendor.scss");
  // console.log('Umgebung: ' + process.env.NODE_ENV);
 })();
 
