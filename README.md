@@ -419,6 +419,8 @@ https://eslint.org/docs/rules/
 
 ### Tailwind
 
+noch nicht eingebaut
+
 https://levelup.gitconnected.com/setup-tailwind-css-with-webpack-3458be3eb547
 
 npm install --save-dev tailwindcss
@@ -455,12 +457,14 @@ module.exports = {
 
 ### Lazy Loading
 
-fehlt noch  
+noch nicht eingebaut
+
 https://webpack.js.org/guides/lazy-loading/
 
 ### Autoprefixer
 
-fehlt noch  
+noch nicht eingebaut
+
 https://webpack.js.org/loaders/postcss-loader/#autoprefixer  
 oder  
 postcss-preset-env hat autoprefixer  
