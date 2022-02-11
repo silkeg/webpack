@@ -175,9 +175,9 @@ npm install --save @fortawesome/fontawesome-free
 ```
 
 css:  
-$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
-@import '~@fortawesome/fontawesome-free/scss/fontawesome';
-@import '~@fortawesome/fontawesome-free/scss/solid';
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';  
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';  
+@import '~@fortawesome/fontawesome-free/scss/solid';  
 @import '~@fortawesome/fontawesome-free/scss/regular';
 
 ### Für fonts und img Loader:
