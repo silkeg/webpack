@@ -394,9 +394,14 @@ plugins: [],
 
 ### Lazy Loading
 
+fehlt noch
 https://webpack.js.org/guides/lazy-loading/
 
 ### autoprefixer
+
+fehlt noch
+postcss-preset-env hat autoprefixer  
+https://webpack.js.org/loaders/postcss-loader/
 
 ### WebpackHinweise
 
@@ -405,3 +410,11 @@ hints: false,
 },
 
 https://webpack.js.org/configuration/performance/
+
+## Publizieren
+
+http://hny.surge.sh/  
+npm install --save-dev surge (npm install --global surge)  
+"scripts":{  
+"surge-deploy": "surge -p dist -d s-tailwind.surge.sh" (-p=project -d=domain)  
+}
