@@ -329,8 +329,8 @@ https://webpack.js.org/plugins/eval-source-map-dev-tool-plugin/
 
 ### development and production Enviroment
 
+https://webpack.js.org/configuration/mode/  
 https://webpack.js.org/guides/environment-variables/
--> geht noch nicht "npm run build-prod"
 
 ### http server
 
