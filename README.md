@@ -37,7 +37,7 @@ npm run oder npm run build
 
 https://webpack.js.org/loaders/
 
-### Config
+## Config
 
 ### babel
 
