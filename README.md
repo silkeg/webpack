@@ -285,17 +285,17 @@ plugins: [
 
 ### Caching
 
-überall bei den files [chunkhash] einfürgen
+überall bei den files [hash] einfürgen
 
 ```js
 new MiniCssExtractPlugin({
-    filename: "[name].[chunkhash].css",
+    filename: "[name].[hash].css",
     chunkFilename: "[id].css",
     ignoreOrder: false, // Enable to remove warnings about conflicting order
 }),
 output: {
     path: path.join(\_\_dirname, 'dist'),
-    filename: '[name].[chunkhash].bundle.js'
+    filename: '[name].[hash].bundle.js'
 },
 ```
 
