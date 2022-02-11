@@ -18,7 +18,7 @@ oder
 }  
 //„build:production“: „webpack --config webpack.config.prod.js“ // fals man ein zweiten ConfigFile hat und diesen anstoßen will
 
-## webpack.config.js anlegen:
+### webpack.config.js anlegen:
 
 https://webpack.js.org/guides/development/
 
@@ -33,9 +33,11 @@ module.exports = {
 
 npm run oder npm run build
 
-## Loaders
+### Loaders
 
 https://webpack.js.org/loaders/
+
+### Config
 
 ### babel
 
