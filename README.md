@@ -1,4 +1,4 @@
-# Webpack Documentation
+# Webpack Dokumentation
 
 ### Projektordner anlegen
 
