@@ -11,7 +11,7 @@ oder
 
 -> npm install --save-dev webpack webpack-cli
 
-### packet.jason:
+### package.json:
 
 „scripts“: {  
  „build“: „webpack“
