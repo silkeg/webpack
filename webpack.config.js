@@ -12,7 +12,7 @@ const config = {};
 
 // module.exports = {
 module.exports = (env) => {
-  let devMode = env.mode === "development";
+  const devMode = env.mode === "development";
   config.mode = devMode ? "development" : "production";
   config.devtool = devMode ? "source-map" : false;
   // entry: './src/pages/homepage/index.js',
