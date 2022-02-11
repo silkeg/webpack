@@ -27,15 +27,15 @@ oder
 https://webpack.js.org/guides/development/
 
 ```js
-const path = require('path');
+const path = require("path");
 
 module.exports = {
-    entry: './app.js',
-    output: {
-        path: path.join(\_\_dirname, 'dist'),
-        filename: 'bundle.js'
-    }
-}
+  entry: "./app.js",
+  output: {
+    path: path.join(__dirname, "dist"),
+    filename: "bundle.js",
+  },
+};
 ```
 
 npm run oder npm run build
@@ -93,7 +93,7 @@ webpack.config.js:
 devServer: {
     //contentBase: './'
     static: {
-        directory: path.join(\_\_dirname, 'dist'),
+        directory: path.join(__dirname, 'dist'),
     },
     compress: true,
     port: 3000,
@@ -110,13 +110,13 @@ webpack.config.js:
 
 ```js
 rules: [
-    {
-        test: /\.css$/i,
-        include: path.resolve(\_\_dirname, 'src'),
-        exclude: /(node_modules|bower_components)/,
-        use: ["style-loader", "css-loader", "sass-loader"],
-    }
-]
+  {
+    test: /\.css$/i,
+    include: path.resolve(__dirname, "src"),
+    exclude: /(node_modules|bower_components)/,
+    use: ["style-loader", "css-loader", "sass-loader"],
+  },
+];
 ```
 
 js file:  
@@ -128,13 +128,13 @@ npm install sass-loader sass webpack --save-dev
 
 ```js
 rules: [
-    {
-        test: /\.scss$/i,
-        include: path.resolve(\_\_dirname, 'src'),
-        exclude: /(node_modules|bower_components)/,
-        use: ["style-loader", "css-loader", "sass-loader, „sass-loader"],
-    }
-]
+  {
+    test: /\.scss$/i,
+    include: path.resolve(__dirname, "src"),
+    exclude: /(node_modules|bower_components)/,
+    use: ["style-loader", "css-loader", "sass-loader, „sass-loader"],
+  },
+];
 ```
 
 js file:  
@@ -148,13 +148,13 @@ npm install postcss postcss-loader postcss-preset-env --save-dev
 
 ```js
 rules: [
-    {
-        test: /\.css$/i,
-        include: path.resolve(\_\_dirname, 'src'),
-        exclude: /(node_modules|bower_components)/,
-        use: ["style-loader", "css-loader", 'postcss-loader'],
-    }
-]
+  {
+    test: /\.css$/i,
+    include: path.resolve(__dirname, "src"),
+    exclude: /(node_modules|bower_components)/,
+    use: ["style-loader", "css-loader", "postcss-loader"],
+  },
+];
 ```
 
 ### font awesome
@@ -218,7 +218,7 @@ webpack.config.js:
 resolve: {
     // extention: ['.js', 'scss', 'css'],
     alias:{
-        BaseCss: path.resolve(\_\_dirname, 'src', 'base', 'css' )
+        BaseCss: path.resolve(__dirname, 'src', 'base', 'css' )
     }
 },
 ```
@@ -235,7 +235,7 @@ entry: {
 },
 -> name einfügen
 output: {
-    path: path.join(\_\_dirname, 'dist'),
+    path: path.join(__dirname, 'dist'),
     filename: '[name].bundle.js'
 },
 ```
@@ -294,7 +294,7 @@ new MiniCssExtractPlugin({
     ignoreOrder: false, // Enable to remove warnings about conflicting order
 }),
 output: {
-    path: path.join(\_\_dirname, 'dist'),
+    path: path.join(__dirname, 'dist'),
     filename: '[name].[hash].bundle.js'
 },
 ```
@@ -310,7 +310,7 @@ für jede Seite anlegen:
 ```js
 plugins: [
     new HtmlWebpackPlugin({
-        template: path.resolve(\_\_dirname, 'src', 'base', 'template', 'index.html'),
+        template: path.resolve(__dirname, 'src', 'base', 'template', 'index.html'),
         hash: true,
         inject: 'body',
         chunks: ['homepage'],
@@ -329,7 +329,7 @@ clean: true ergänzen
 
 ```js
 output: {
-    path: path.join(\_\_dirname, 'dist'),
+    path: path.join(__dirname, 'dist'),
     filename: '[name].[hash].bundle.js',
     clean: true,
 },
@@ -350,7 +350,7 @@ with html-webpack-plugin
 
 ```js
 new HtmlWebpackPlugin({
-    template: path.resolve(\_\_dirname, 'src', 'base', 'template', 'index.html'),
+    template: path.resolve(__dirname, 'src', 'base', 'template', 'index.html'),
     hash: true,
     inject: 'body',
     chunks: ['impressum'],
