@@ -26,9 +26,9 @@ oder
 
 https://webpack.js.org/guides/development/
 
-var path = require('path');
-
 ```js
+const path = require('path');
+
 module.exports = {
     entry: './app.js',
     output: {
