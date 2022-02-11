@@ -14,8 +14,8 @@ oder
 ### package.json:
 
 „scripts“: {  
- „build“: „webpack“
-}
+ „build“: „webpack“  
+}  
 //„build:production“: „webpack --config webpack.config.prod.js“ // fals man ein zweiten ConfigFile hat und diesen anstoßen will
 
 ## webpack.config.js anlegen:
@@ -68,8 +68,8 @@ npm install webpack-dev-server --save-dev
 package.json:  
 "scripts": {  
  "build": "webpack",  
- "server": "webpack-dev-server",
-"server-prod": "npm run build; webpack-dev-server",
+ "server": "webpack-dev-server",  
+"server-prod": "npm run build; webpack-dev-server",  
 }
 
 webpack.config.js:  
@@ -136,12 +136,12 @@ https://bytepursuits.com/using-webpack-5-with-font-awesome-5
 npm install --save @fortawesome/fontawesome-free
 
 {  
- test: /\.(svg|eot|woff|woff2|ttf)$/,  
- type: 'asset/resource',  
- generator: {  
- //publicPath: '../fonts/',  
- filename: 'compiled/fonts/[hash][ext][query]'  
- }  
+test: /\.(svg|eot|woff|woff2|ttf)$/,  
+type: 'asset/resource',  
+generator: {  
+//publicPath: '../fonts/',  
+filename: 'compiled/fonts/[hash][ext][query]'  
+}  
 }
 
 css:  
@@ -154,16 +154,16 @@ $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 
 https://webpack.js.org/guides/asset-modules/  
 https://stackoverflow.com/questions/45489897/load-fonts-with-webpack-and-font-face  
-mit der Konfiguration wandelt der URL Loader Fils kleiner denn 100kb in base64 um,
+mit der Konfiguration wandelt der URL Loader Fils kleiner denn 100kb in base64 um,  
 ist größer dann wird der File vom Server geladen
 
 npm install url-loader file-loader --save-dev
 
 rules: [  
- {
-test: /\.(png|jpg|gif)$/i,
-type: 'javascript/auto',
-// use: ['url-loader?limit=100000'],
+ {  
+test: /\.(png|jpg|gif)$/i,  
+type: 'javascript/auto',  
+// use: ['url-loader?limit=100000'],  
 use: [
 {
 loader: 'url-loader',
@@ -171,8 +171,8 @@ options: {
 limit: 8192,
 }
 },
-]
-}
+]  
+}  
 ]
 
 ### Alias für Dateipfade
@@ -255,13 +255,13 @@ npm install --save-dev html-webpack-plugin
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 für jede Seite anlegen:  
 plugins: [  
- new HtmlWebpackPlugin({
-template: path.resolve(\_\_dirname, 'src', 'base', 'template', 'index.html'),
-hash: true,
-inject: 'body',
-chunks: ['homepage'],
-filename: 'index.html',
-}),
+ new HtmlWebpackPlugin({  
+template: path.resolve(\_\_dirname, 'src', 'base', 'template', 'index.html'),  
+hash: true,  
+inject: 'body',  
+chunks: ['homepage'],  
+filename: 'index.html',  
+}),  
 ],
 
 ### clear dist Ordner
@@ -270,61 +270,61 @@ https://webpack.js.org/guides/output-management/
 
 https://github.com/jantimon/html-webpack-plugin#minification
 
-clean: true ergänzen
-output: {
-path: path.join(\_\_dirname, 'dist'),
-filename: '[name].[hash].bundle.js',
-clean: true,
+clean: true ergänzen  
+output: {  
+path: path.join(\_\_dirname, 'dist'),  
+filename: '[name].[hash].bundle.js',  
+clean: true,  
 },
 
-oder in dem man das Plug in installiert:
+oder in dem man das Plug in installiert:  
 npm install --save-dev clean-webpack-plugin
 
-const CleanPlugin = require ('clean-webpack-plugin'); // oben
+const CleanPlugin = require ('clean-webpack-plugin'); // oben  
 plugins: [
 new CleanPlugin.CleanWebpackPlugin();
 ]
 
 ### minify
 
-HTML:
-with html-webpack-plugin
-new HtmlWebpackPlugin({
-template: path.resolve(\_\_dirname, 'src', 'base', 'template', 'index.html'),
-hash: true,
-inject: 'body',
-chunks: ['impressum'],
-filename: 'impressum.html',
-// favicon: '',
-minify: {
-collapseWhitespace: true,
-keepClosingSlash: true,
-removeComments: true,
-// removeRedundantAttributes: true,
-// removeScriptTypeAttributes: true,
-// removeStyleLinkTypeAttributes: true,
-useShortDoctype: true
-}
+HTML:  
+with html-webpack-plugin  
+new HtmlWebpackPlugin({  
+template: path.resolve(\_\_dirname, 'src', 'base', 'template', 'index.html'),  
+hash: true,  
+inject: 'body',  
+chunks: ['impressum'],  
+filename: 'impressum.html',  
+// favicon: '',  
+minify: {  
+collapseWhitespace: true,  
+keepClosingSlash: true,  
+removeComments: true,  
+// removeRedundantAttributes: true,  
+// removeScriptTypeAttributes: true,  
+// removeStyleLinkTypeAttributes: true,  
+useShortDoctype: true  
+}  
 }),
 
-CSS und sourcmap:
-https://webpack.js.org/plugins/css-minimizer-webpack-plugin/
+CSS und sourcmap:  
+https://webpack.js.org/plugins/css-minimizer-webpack-plugin/  
 npm install css-minimizer-webpack-plugin --save-dev
 
-Uglify Javascript:
+Uglify Javascript:  
 https://webpack.js.org/plugins/terser-webpack-plugin/
 
 npm install terser-webpack-plugin --save-dev
 
-https://stackoverflow.com/questions/58000019/using-terser-webpack-plugin-how-to-avoid-building-with-comments
+https://stackoverflow.com/questions/58000019/ using-terser-webpack-plugin-how-to-avoid-building-with-comments
 
-sourcmap:
+sourcmap:  
 https://webpack.js.org/configuration/devtool/
 
-(
-https://github.com/terser/terser#minify-options
-https://webpack.js.org/plugins/source-map-dev-tool-plugin/
-https://webpack.js.org/plugins/eval-source-map-dev-tool-plugin/
+(  
+https://github.com/terser/terser#minify-options  
+https://webpack.js.org/plugins/source-map-dev-tool-plugin/  
+https://webpack.js.org/plugins/eval-source-map-dev-tool-plugin/  
 )
 
 ### development and production Enviroment
@@ -348,7 +348,7 @@ npm install --save-dev eslint
 
 VS Code -> Extentions - ESLint
 
--> appel + P -> Create ESLint configuration oder:
+-> appel + P -> Create ESLint configuration oder:  
 -> npm init @eslint/config
 
 https://eslint.org/docs/user-guide/configuring  
@@ -372,24 +372,24 @@ https://levelup.gitconnected.com/setup-tailwind-css-with-webpack-3458be3eb547
 
 Ordnerstruktur:
 
-dist -> style.css + index.html
+dist -> style.css + index.html  
 src -> style.css -> da muss rein: @tailwind base; @tailwind components; @tailwind utilities;
 
 npx tailwindcss init
 
-module.exports = {
+module.exports = {  
 content: [
 './dist/*.{html,js}'
-],
-theme: {
-extend: {},
-},
-plugins: [],
+],  
+theme: {  
+extend: {},  
+},  
+plugins: [],  
 }
 
-"scripts": {
-"test": "echo \"Error: no test specified\" && exit 1",
-"build": "tailwindcss -i ./src/style.css -o ./dist/style.css --watch"
+"scripts": {  
+"test": "echo \"Error: no test specified\" && exit 1",  
+"build": "tailwindcss -i ./src/style.css -o ./dist/style.css --watch"  
 },
 
 ### Lazy Loading
@@ -407,8 +407,8 @@ https://webpack.js.org/loaders/postcss-loader/
 
 ### WebpackHinweise
 
-performance: {
-hints: false,
+performance: {  
+hints: false,  
 },
 
 https://webpack.js.org/configuration/performance/
