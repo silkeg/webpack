@@ -11,44 +11,40 @@ oder
 
 -> npm install --save-dev webpack webpack-cli
 
-
-
 ### package.json:
 
-„scripts“: {  
-    „build“: „webpack“  
-}  
-//„build:production“: „webpack --config webpack.config.prod.js“ 
+```js
+„scripts“: {
+    „build“: „webpack“
+}
+```
+
+//„build:production“: „webpack --config webpack.config.prod.js“
 // fals man ein zweiten ConfigFile hat und diesen anstoßen will
-
-
 
 ### webpack.config.js anlegen:
 
 https://webpack.js.org/guides/development/
 
-var path = require('path');  
-module.exports = {  
- entry: './app.js',  
- output: {  
- path: path.join(\_\_dirname, 'dist'),  
- filename: 'bundle.js'  
- }  
+var path = require('path');
+
+```js
+module.exports = {
+    entry: './app.js',
+    output: {
+        path: path.join(\_\_dirname, 'dist'),
+        filename: 'bundle.js'
+    }
 }
+```
 
 npm run oder npm run build
-
-
 
 ### Loaders
 
 https://webpack.js.org/loaders/
 
-
-
 ## Config
-
-
 
 ### babel
 
@@ -56,23 +52,24 @@ https://webpack.js.org/loaders/babel-loader/
 
 npm install -D babel-loader @babel/core @babel/preset-env webpack
 
-webpack.config.js:  
-module: {  
-    rules: [  
-        {  
-            test: /\.m?js$/,  
-            exclude: /(node_modules)/,  
-            use: {  
-                loader: 'babel-loader',  
-                options: {  
-                    presets: ['@babel/preset-env']  
-                }  
-            }  
-        }  
-    ]  
+webpack.config.js:
+
+```js
+module: {
+  rules: [
+    {
+      test: /\.m?js$/,
+      exclude: /(node_modules)/,
+      use: {
+        loader: "babel-loader",
+        options: {
+          presets: ["@babel/preset-env"],
+        },
+      },
+    },
+  ];
 }
-
-
+```
 
 ### devserver
 
@@ -80,25 +77,28 @@ https://webpack.js.org/configuration/dev-server/
 
 npm install webpack-dev-server --save-dev
 
-package.json:  
-"scripts": {  
-    "build": "webpack",  
-    "server": "webpack-dev-server",  
-    "server-prod": "npm run build; webpack-dev-server",  
+package.json:
+
+```js
+"scripts": {
+    "build": "webpack",
+    "server": "webpack-dev-server",
+    "server-prod": "npm run build; webpack-dev-server",
 }
+```
 
-webpack.config.js:  
+webpack.config.js:
 
-devServer: {  
+```js
+devServer: {
     //contentBase: './'
-    static: {  
-        directory: path.join(\_\_dirname, 'dist'),  
-    },  
-    compress: true,  
-    port: 3000,  
+    static: {
+        directory: path.join(\_\_dirname, 'dist'),
+    },
+    compress: true,
+    port: 3000,
 },
-
-
+```
 
 ### CSS
 
@@ -106,31 +106,36 @@ https://webpack.js.org/loaders/css-loader/
 
 npm install css-loader style-loader --save-dev
 
-webpack.config.js:  
-rules: [  
-    {  
-        test: /\.css$/i,  
+webpack.config.js:
+
+```js
+rules: [
+    {
+        test: /\.css$/i,
         include: path.resolve(\_\_dirname, 'src'),
-        exclude: /(node_modules|bower_components)/,  
-        use: ["style-loader", "css-loader", "sass-loader"],  
+        exclude: /(node_modules|bower_components)/,
+        use: ["style-loader", "css-loader", "sass-loader"],
     }
-]  
+]
+```
+
 js file:  
 import "./style.css";
 
-
-
 ### sass
 
-npm install sass-loader sass webpack --save-dev  
-rules: [  
-    {  
-        test: /\.scss$/i,  
-        include: path.resolve(\_\_dirname, 'src'),  
-        exclude: /(node_modules|bower_components)/,  
-        use: ["style-loader", "css-loader", "sass-loader, „sass-loader"],  
-    }  
+npm install sass-loader sass webpack --save-dev
+
+```js
+rules: [
+    {
+        test: /\.scss$/i,
+        include: path.resolve(\_\_dirname, 'src'),
+        exclude: /(node_modules|bower_components)/,
+        use: ["style-loader", "css-loader", "sass-loader, „sass-loader"],
+    }
 ]
+```
 
 js file:  
 import "./style.scss";
@@ -139,15 +144,18 @@ import "./style.scss";
 
 https://webpack.js.org/loaders/postcss-loader/
 
-npm install postcss postcss-loader postcss-preset-env --save-dev  
-rules: [  
-    {  
-        test: /\.css$/i,  
-        include: path.resolve(\_\_dirname, 'src'),  
-        exclude: /(node_modules|bower_components)/,  
-        use: ["style-loader", "css-loader", 'postcss-loader'],  
-    }  
+npm install postcss postcss-loader postcss-preset-env --save-dev
+
+```js
+rules: [
+    {
+        test: /\.css$/i,
+        include: path.resolve(\_\_dirname, 'src'),
+        exclude: /(node_modules|bower_components)/,
+        use: ["style-loader", "css-loader", 'postcss-loader'],
+    }
 ]
+```
 
 ### font awesome
 
@@ -155,22 +163,22 @@ https://bytepursuits.com/using-webpack-5-with-font-awesome-5
 
 npm install --save @fortawesome/fontawesome-free
 
-{  
-    test: /\.(svg|eot|woff|woff2|ttf)$/,  
-    type: 'asset/resource',  
-    generator: {  
-        //publicPath: '../fonts/',  
-        filename: 'compiled/fonts/[hash][ext][query]'  
-    }  
+```js
+{
+    test: /\.(svg|eot|woff|woff2|ttf)$/,
+    type: 'asset/resource',
+    generator: {
+        //publicPath: '../fonts/',
+        filename: 'compiled/fonts/[hash][ext][query]'
+    }
 }
+```
 
 css:  
 $fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/regular';
-
-
 
 ### Für fonts und img Loader:
 
@@ -181,52 +189,53 @@ ist größer dann wird der File vom Server geladen
 
 npm install url-loader file-loader --save-dev
 
-rules: [  
-    {  
-        test: /\.(png|jpg|gif)$/i,  
-        type: 'javascript/auto',  
-        // use: ['url-loader?limit=100000'],  
-        use: [
-            {
-                loader: 'url-loader',
-                options: {
-                    limit: 8192,
-                }
-            },
-        ]  
-    }  
-]
-
-
+```js
+rules: [
+  {
+    test: /\.(png|jpg|gif)$/i,
+    type: "javascript/auto",
+    // use: ['url-loader?limit=100000'],
+    use: [
+      {
+        loader: "url-loader",
+        options: {
+          limit: 8192,
+        },
+      },
+    ],
+  },
+];
+```
 
 ### Alias für Dateipfade
 
-webpack.config.js:  
-resolve: {  
-    // extention: ['.js', 'scss', 'css'],  
-    alias:{  
-        BaseCss: path.resolve(\_\_dirname, 'src', 'base', 'css' )  
-    }  
+webpack.config.js:
+
+```js
+resolve: {
+    // extention: ['.js', 'scss', 'css'],
+    alias:{
+        BaseCss: path.resolve(\_\_dirname, 'src', 'base', 'css' )
+    }
 },
-
-
+```
 
 ### multible entry points = chunks
 
 https://webpack.js.org/configuration/entry-context/#dependencies
 https://webpack.js.org/guides/code-splitting/
 
-entry: {  
-    homepage: path.resolve(**dirname, 'src', 'pages', 'homepage'),  
-    impressum: path.resolve(**dirname, 'src', 'pages', 'impressum'),  
-},  
--> name einfügen  
-output: {  
-    path: path.join(\_\_dirname, 'dist'),  
-    filename: '[name].bundle.js'  
+```js
+entry: {
+    homepage: path.resolve(**dirname, 'src', 'pages', 'homepage'),
+    impressum: path.resolve(**dirname, 'src', 'pages', 'impressum'),
 },
-
-
+-> name einfügen
+output: {
+    path: path.join(\_\_dirname, 'dist'),
+    filename: '[name].bundle.js'
+},
+```
 
 ### css multible files
 
@@ -238,24 +247,30 @@ npm install --save-dev mini-css-extract-plugin
 
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
+```js
 module.exports = {
-    plugins: [new MiniCssExtractPlugin()],
-    module: {
-        rules: [
-            {
-                test: /\.(sa|sc|c)ss$/,
-                use: [ MiniCssExtractPlugin.loader , "css-loader", "postcss-loader", "sass-loader", ],
-            },
+  plugins: [new MiniCssExtractPlugin()],
+  module: {
+    rules: [
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          MiniCssExtractPlugin.loader,
+          "css-loader",
+          "postcss-loader",
+          "sass-loader",
         ],
-    },
+      },
+    ],
+  },
 };
-
-
+```
 
 ### -> split Js (L48)
 
 https://webpack.js.org/plugins/commons-chunk-plugin/
 
+```js
 plugins: [
     new webpack.optimize.CommonsChunkPlugin(options);
     new webpack.ProvidePlugin({
@@ -263,11 +278,13 @@ plugins: [
         jQuery: 'jquery'
     })
 ],
+```
 
 ### Caching
 
 überall bei den files [chunkhash] einfürgen
 
+```js
 new MiniCssExtractPlugin({
     filename: "[name].[chunkhash].css",
     chunkFilename: "[id].css",
@@ -277,6 +294,7 @@ output: {
     path: path.join(\_\_dirname, 'dist'),
     filename: '[name].[chunkhash].bundle.js'
 },
+```
 
 -> erzeugt die HTML Seiten
 https://webpack.js.org/plugins/html-webpack-plugin/
@@ -284,16 +302,19 @@ https://webpack.js.org/plugins/html-webpack-plugin/
 npm install --save-dev html-webpack-plugin
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-für jede Seite anlegen:  
-plugins: [  
-    new HtmlWebpackPlugin({  
-        template: path.resolve(\_\_dirname, 'src', 'base', 'template', 'index.html'),  
-        hash: true,  
-        inject: 'body',  
-        chunks: ['homepage'],  
-        filename: 'index.html',  
-    }),  
+für jede Seite anlegen:
+
+```js
+plugins: [
+    new HtmlWebpackPlugin({
+        template: path.resolve(\_\_dirname, 'src', 'base', 'template', 'index.html'),
+        hash: true,
+        inject: 'body',
+        chunks: ['homepage'],
+        filename: 'index.html',
+    }),
 ],
+```
 
 ### clear dist Ordner
 
@@ -301,43 +322,48 @@ https://webpack.js.org/guides/output-management/
 
 https://github.com/jantimon/html-webpack-plugin#minification
 
-clean: true ergänzen  
-output: {  
-    path: path.join(\_\_dirname, 'dist'),  
-    filename: '[name].[hash].bundle.js',  
-    clean: true,  
+clean: true ergänzen
+
+```js
+output: {
+    path: path.join(\_\_dirname, 'dist'),
+    filename: '[name].[hash].bundle.js',
+    clean: true,
 },
+```
 
 oder in dem man das Plug in installiert:  
 npm install --save-dev clean-webpack-plugin
 
 const CleanPlugin = require ('clean-webpack-plugin'); // oben  
 plugins: [
-    new CleanPlugin.CleanWebpackPlugin();
+new CleanPlugin.CleanWebpackPlugin();
 ]
 
 ### minify
 
 HTML:  
-with html-webpack-plugin  
+with html-webpack-plugin
 
-new HtmlWebpackPlugin({  
-    template: path.resolve(\_\_dirname, 'src', 'base', 'template', 'index.html'),  
-    hash: true,  
-    inject: 'body',  
-    chunks: ['impressum'],  
-    filename: 'impressum.html',  
-    // favicon: '',  
-    minify: {  
-        collapseWhitespace: true,  
-        keepClosingSlash: true,  
-        removeComments: true,  
-        // removeRedundantAttributes: true,  
-        // removeScriptTypeAttributes: true,  
-        // removeStyleLinkTypeAttributes: true,  
-        useShortDoctype: true  
-    }  
+```js
+new HtmlWebpackPlugin({
+    template: path.resolve(\_\_dirname, 'src', 'base', 'template', 'index.html'),
+    hash: true,
+    inject: 'body',
+    chunks: ['impressum'],
+    filename: 'impressum.html',
+    // favicon: '',
+    minify: {
+        collapseWhitespace: true,
+        keepClosingSlash: true,
+        removeComments: true,
+        // removeRedundantAttributes: true,
+        // removeScriptTypeAttributes: true,
+        // removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true
+    }
 }),
+```
 
 CSS und sourcmap:  
 https://webpack.js.org/plugins/css-minimizer-webpack-plugin/  
@@ -353,31 +379,22 @@ https://stackoverflow.com/questions/58000019/ using-terser-webpack-plugin-how-to
 sourcmap:  
 https://webpack.js.org/configuration/devtool/
 
- 
 https://github.com/terser/terser#minify-options  
 https://webpack.js.org/plugins/source-map-dev-tool-plugin/  
-https://webpack.js.org/plugins/eval-source-map-dev-tool-plugin/  
-
-
+https://webpack.js.org/plugins/eval-source-map-dev-tool-plugin/
 
 ### development and production Enviroment
 
 https://webpack.js.org/configuration/mode/  
 https://webpack.js.org/guides/environment-variables/
 
-
-
 ### http server
 
 https://www.npmjs.com/package/http-server
 
-
-
 ### static site generator
 
 https://surge.sh/
-
-
 
 ### eslint
 
@@ -393,13 +410,9 @@ VS Code -> Extentions - ESLint
 https://eslint.org/docs/user-guide/configuring  
 https://eslint.org/docs/rules/
 
-
-
 ### Prettier
 
 -> im VS Code -> Extention
-
-
 
 ### tailwind
 
@@ -420,29 +433,27 @@ src -> style.css -> da muss rein: @tailwind base; @tailwind components; @tailwin
 
 npx tailwindcss init
 
-module.exports = {  
+```js
+module.exports = {
     content: [
         './dist/*.{html,js}'
-    ],  
-    theme: {  
-        extend: {},  
-    },  
-    plugins: [],  
+    ],
+    theme: {
+        extend: {},
+    },
+    plugins: [],
 }
 
-"scripts": {  
-    "test": "echo \"Error: no test specified\" && exit 1",  
-    "build": "tailwindcss -i ./src/style.css -o ./dist/style.css --watch"  
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tailwindcss -i ./src/style.css -o ./dist/style.css --watch"
 },
-
-
+```
 
 ### Lazy Loading
 
 fehlt noch  
 https://webpack.js.org/guides/lazy-loading/
-
-
 
 ### autoprefixer
 
@@ -452,22 +463,23 @@ oder
 postcss-preset-env hat autoprefixer  
 https://webpack.js.org/loaders/postcss-loader/
 
-
-
 ### WebpackHinweise
 
-performance: {  
-    hints: false,  
+```js
+performance: {
+    hints: false,
 },
+```
 
 https://webpack.js.org/configuration/performance/
-
-
 
 ## Publizieren
 
 http://hny.surge.sh/  
-npm install --save-dev surge (npm install --global surge)  
-"scripts":{  
-    "surge-deploy": "surge -p dist -d s-tailwind.surge.sh" (-p=project -d=domain)  
+npm install --save-dev surge (npm install --global surge)
+
+```js
+"scripts":{
+    "surge-deploy": "surge -p dist -d s-tailwind.surge.sh" (-p=project -d=domain)
 }
+```
