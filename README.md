@@ -223,7 +223,7 @@ resolve: {
 },
 ```
 
-### multible entry points = chunks
+### Multible Entry Points = Chunks
 
 https://webpack.js.org/configuration/entry-context/#dependencies
 https://webpack.js.org/guides/code-splitting/
@@ -240,7 +240,7 @@ output: {
 },
 ```
 
-### css multible files
+### Css Multible Files
 
 https://webpack.js.org/plugins/mini-css-extract-plugin/
 
@@ -269,7 +269,7 @@ module.exports = {
 };
 ```
 
-### -> split Js (L48)
+### -> Split Js (L48)
 
 https://webpack.js.org/plugins/commons-chunk-plugin/
 
@@ -319,7 +319,7 @@ plugins: [
 ],
 ```
 
-### clear dist Ordner
+### Clear dist Ordner
 
 https://webpack.js.org/guides/output-management/
 
@@ -343,7 +343,7 @@ plugins: [
 new CleanPlugin.CleanWebpackPlugin();
 ]
 
-### minify
+### Minify
 
 HTML:  
 with html-webpack-plugin
@@ -386,20 +386,20 @@ https://github.com/terser/terser#minify-options
 https://webpack.js.org/plugins/source-map-dev-tool-plugin/  
 https://webpack.js.org/plugins/eval-source-map-dev-tool-plugin/
 
-### development and production Enviroment
+### Development and production Enviroment
 
 https://webpack.js.org/configuration/mode/  
 https://webpack.js.org/guides/environment-variables/
 
-### http server
+### Http Server
 
 https://www.npmjs.com/package/http-server
 
-### static site generator
+### Static Site Generator
 
 https://surge.sh/
 
-### eslint
+### EsLint
 
 https://webpack.js.org/plugins/eslint-webpack-plugin/
 
@@ -417,7 +417,7 @@ https://eslint.org/docs/rules/
 
 -> im VS Code -> Extention
 
-### tailwind
+### Tailwind
 
 https://levelup.gitconnected.com/setup-tailwind-css-with-webpack-3458be3eb547
 
@@ -458,7 +458,7 @@ module.exports = {
 fehlt noch  
 https://webpack.js.org/guides/lazy-loading/
 
-### autoprefixer
+### Autoprefixer
 
 fehlt noch  
 https://webpack.js.org/loaders/postcss-loader/#autoprefixer  
