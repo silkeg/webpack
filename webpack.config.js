@@ -6,19 +6,20 @@ const { Hash } = require("crypto");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 
-// const devMode = process.env.WEBPACK_MODE === "development";
-// "development" -> true
-// "production" -> false
-const devMode = true;
+const config = {};
+// https://webpack.js.org/configuration/mode/
+// https://webpack.js.org/guides/environment-variables/
 
-module.exports = {
-  mode: devMode ? "development" : "production",
-  devtool: devMode ? "source-map" : false,
+// module.exports = {
+module.exports = (env) => {
+  let devMode = env.mode === "development";
+  config.mode = devMode ? "development" : "production";
+  config.devtool = devMode ? "source-map" : false;
   // entry: './src/pages/homepage/index.js',
-  performance: {
+  config.performance = {
     hints: devMode ? "warning" : false,
-  },
-  entry: {
+  };
+  config.entry = {
     index: {
       import: path.resolve(__dirname, "src", "pages", "homepage"),
       dependOn: "shared",
@@ -29,8 +30,8 @@ module.exports = {
     },
     // shared: ["jquery", "react"],
     shared: path.resolve(__dirname, "src", "base", "js", "main.js"),
-  },
-  module: {
+  };
+  config.module = {
     rules: [
       {
         test: /\.js$/,
@@ -88,13 +89,13 @@ module.exports = {
         ],
       },
     ],
-  },
-  resolve: {
+  };
+  config.resolve = {
     alias: {
       BaseCss: path.resolve(__dirname, "src", "base", "css"),
     },
-  },
-  optimization: {
+  };
+  config.optimization = {
     // runtimeChunk: 'single', // for multiple entry points
     splitChunks: {
       chunks: "all",
@@ -124,8 +125,8 @@ module.exports = {
         },
       }),
     ],
-  },
-  plugins: [
+  };
+  config.plugins = [
     new MiniCssExtractPlugin({
       filename: devMode ? "[name].css" : "[name].[hash].css",
       chunkFilename: "[id].css",
@@ -181,19 +182,20 @@ module.exports = {
             useShortDoctype: true,
           },
     }),
-  ],
-  output: {
+  ];
+  config.output = {
     path: path.join(__dirname, "dist"),
     filename: devMode ? "[name].bundle.js" : "[name].[hash].bundle.js",
     //filename: "[name].[contenthash].bundle.js",
     //publicPath: "dist/js/",
     clean: true,
-  },
-  devServer: {
+  };
+  config.devServer = {
     static: {
       directory: path.join(__dirname, "dist"),
     },
     compress: true,
     port: 3000,
-  },
+  };
+  return config;
 };

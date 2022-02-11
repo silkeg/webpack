@@ -39,10 +39,12 @@
     "webpack-dev-server": "^4.7.3"
   },
   "scripts": {
-    "build": "webpack --env=development",
-    "build-prod": "webpack --env=production",
+    "build": "webpack --env mode=development",
+    "build-prod": "webpack --env mode=production",
     "server": "npm run build; webpack-dev-server",
-    "server-prod": "npm run build-prod; webpack-dev-server"
+    "server-prod": "npm run build-prod; webpack-dev-server",
+    "watch": "webpack --prodress --watch",
+    "server-open": "npm run build; webpack-dev-server --open"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4"
