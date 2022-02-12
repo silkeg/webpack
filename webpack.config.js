@@ -36,7 +36,7 @@ module.exports = (env) => {
       {
         test: /\.js$/,
         include: path.resolve(__dirname, "src"),
-        exclude: /(node_modules|bower_components)/,
+        exclude: /(node_modules)/,
         use: {
           loader: "babel-loader",
           options: {
