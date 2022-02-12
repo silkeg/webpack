@@ -334,6 +334,10 @@ https://webpack.js.org/plugins/eval-source-map-dev-tool-plugin/
 https://webpack.js.org/configuration/mode/  
 https://webpack.js.org/guides/environment-variables/
 
+### andere Variante:
+
+https://www.npmjs.com/package/serve
+
 ### http server
 
 https://www.npmjs.com/package/http-server
