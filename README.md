@@ -359,6 +359,8 @@ https://eslint.org/docs/rules/
 ### Prettier
 
 -> im VS Code -> Extention
+https://www.npmjs.com/package/prettier-webpack-plugin
+https://prettier.io/docs/en/precommit.html
 
 ### tailwind
 

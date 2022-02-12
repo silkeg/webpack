@@ -43,7 +43,7 @@
     "build-prod": "webpack --env mode=production",
     "server": "npm run build; webpack-dev-server",
     "server-prod": "npm run build-prod; webpack-dev-server",
-    "watch": "webpack --prodress --watch",
+    "watch": "webpack --progress --watch",
     "server-open": "npm run build; webpack-dev-server --open"
   },
   "dependencies": {
