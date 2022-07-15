@@ -29,8 +29,8 @@ var path = require('path');
 module.exports = {  
  entry: './app.js',  
  output: {  
- path: path.join(\_\_dirname, 'dist'),  
- filename: 'bundle.js'  
+  path: path.join(\_\_dirname, 'dist'),  
+  filename: 'bundle.js'  
  }  
 }
 ```
@@ -49,20 +49,21 @@ https://webpack.js.org/loaders/babel-loader/
 
 npm install -D babel-loader @babel/core @babel/preset-env webpack
 
-```js
+
 webpack.config.js:  
+```js
 module: {  
  rules: [  
- {  
- test: /\.m?js$/,  
- exclude: /(node_modules)/,  
- use: {  
- loader: 'babel-loader',  
- options: {  
- presets: ['@babel/preset-env']  
- }  
- }  
- }  
+  {  
+   test: /\.m?js$/,  
+   exclude: /(node_modules)/,  
+   use: {  
+    loader: 'babel-loader',  
+    options: {  
+     presets: ['@babel/preset-env']  
+    }  
+   }  
+  }  
  ]  
 }
 ```
@@ -79,7 +80,7 @@ package.json:
 "scripts": {  
  "build": "webpack",  
  "server": "webpack-dev-server",  
-"server-prod": "npm run build; webpack-dev-server",  
+ "server-prod": "npm run build; webpack-dev-server",  
 }
 ```
 
@@ -88,8 +89,8 @@ webpack.config.js:
 ```js
 devServer: {  
  //contentBase: './'
-static: {  
- directory: path.join(\_\_dirname, 'dist'),  
+ static: {  
+  directory: path.join(\_\_dirname, 'dist'),  
  },  
  compress: true,  
  port: 3000,  
@@ -108,7 +109,7 @@ rules: [
  {  
  test: /\.css$/i,  
  include: path.resolve(\_\_dirname, 'src'),
-exclude: /(node_modules|bower_components)/,  
+ exclude: /(node_modules|bower_components)/,  
  use: ["style-loader", "css-loader", "sass-loader"],  
  }
 ]  
@@ -158,12 +159,12 @@ npm install --save @fortawesome/fontawesome-free
 
 ```js
 {  
-test: /\.(svg|eot|woff|woff2|ttf)$/,  
-type: 'asset/resource',  
-generator: {  
-//publicPath: '../fonts/',  
-filename: 'compiled/fonts/[hash][ext][query]'  
-}  
+ test: /\.(svg|eot|woff|woff2|ttf)$/,  
+ type: 'asset/resource',  
+ generator: {  
+  //publicPath: '../fonts/',  
+  filename: 'compiled/fonts/[hash][ext][query]'  
+ }  
 }
 ```
 
@@ -185,18 +186,18 @@ npm install url-loader file-loader --save-dev
 ```js
 rules: [  
  {  
-test: /\.(png|jpg|gif)$/i,  
-type: 'javascript/auto',  
-// use: ['url-loader?limit=100000'],  
-use: [
-{
-loader: 'url-loader',
-options: {
-limit: 8192,
-}
-},
-]  
-}  
+  test: /\.(png|jpg|gif)$/i,  
+  type: 'javascript/auto',  
+  // use: ['url-loader?limit=100000'],  
+  use: [
+   {
+    loader: 'url-loader',
+    options: {
+     limit: 8192,
+    }
+   },
+  ]  
+ }  
 ]
 ```
 
@@ -207,7 +208,7 @@ webpack.config.js:
 resolve: {  
  // extention: ['.js', 'scss', 'css'],  
  alias:{  
- BaseCss: path.resolve(\_\_dirname, 'src', 'base', 'css' )  
+  BaseCss: path.resolve(\_\_dirname, 'src', 'base', 'css' )  
  }  
 },
 ```
@@ -239,15 +240,15 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 ```js
 module.exports = {
-plugins: [new MiniCssExtractPlugin()],
-module: {
-rules: [
-{
-test: /\.(sa|sc|c)ss$/,
-use: [ MiniCssExtractPlugin.loader , "css-loader", "postcss-loader", "sass-loader", ],
-},
-],
-},
+ plugins: [new MiniCssExtractPlugin()],
+ module: {
+  rules: [
+   {
+    test: /\.(sa|sc|c)ss$/,
+    use: [ MiniCssExtractPlugin.loader , "css-loader", "postcss-loader", "sass-loader", ],
+   },
+  ],
+ },
 };
 ```
 
@@ -257,11 +258,11 @@ https://webpack.js.org/plugins/commons-chunk-plugin/
 
 ```js
 plugins: [
-new webpack.optimize.CommonsChunkPlugin(options);
-new webpack.ProvidePlugin({
-$: 'jquery',
-jQuery: 'jquery'
-})
+ new webpack.optimize.CommonsChunkPlugin(options);
+ new webpack.ProvidePlugin({
+  $: 'jquery',
+  jQuery: 'jquery'
+ })
 ],
 ```
 
@@ -270,13 +271,13 @@ jQuery: 'jquery'
 überall bei den files [chunkhash] einfürgen
 ```js
 new MiniCssExtractPlugin({
-filename: "[name].[chunkhash].css",
-chunkFilename: "[id].css",
-ignoreOrder: false, // Enable to remove warnings about conflicting order
+ filename: "[name].[chunkhash].css",
+ chunkFilename: "[id].css",
+ ignoreOrder: false, // Enable to remove warnings about conflicting order
 }),
 output: {
-path: path.join(\_\_dirname, 'dist'),
-filename: '[name].[chunkhash].bundle.js'
+ path: path.join(\_\_dirname, 'dist'),
+ filename: '[name].[chunkhash].bundle.js'
 },
 ```
 
@@ -290,12 +291,12 @@ für jede Seite anlegen:
 ```js
 plugins: [  
  new HtmlWebpackPlugin({  
-template: path.resolve(\_\_dirname, 'src', 'base', 'template', 'index.html'),  
-hash: true,  
-inject: 'body',  
-chunks: ['homepage'],  
-filename: 'index.html',  
-}),  
+  template: path.resolve(\_\_dirname, 'src', 'base', 'template', 'index.html'),  
+  hash: true,  
+  inject: 'body',  
+  chunks: ['homepage'],  
+  filename: 'index.html',  
+ }),  
 ],
 ```
 
@@ -308,9 +309,9 @@ https://github.com/jantimon/html-webpack-plugin#minification
 ```js
 clean: true ergänzen  
 output: {  
-path: path.join(\_\_dirname, 'dist'),  
-filename: '[name].[hash].bundle.js',  
-clean: true,  
+ path: path.join(\_\_dirname, 'dist'),  
+ filename: '[name].[hash].bundle.js',  
+ clean: true,  
 },
 ```
 
@@ -320,7 +321,7 @@ npm install --save-dev clean-webpack-plugin
 ```js
 const CleanPlugin = require ('clean-webpack-plugin'); // oben  
 plugins: [
-new CleanPlugin.CleanWebpackPlugin();
+ new CleanPlugin.CleanWebpackPlugin();
 ]
 ```
 
@@ -330,21 +331,21 @@ HTML:
 with html-webpack-plugin  
 ```js
 new HtmlWebpackPlugin({  
-template: path.resolve(\_\_dirname, 'src', 'base', 'template', 'index.html'),  
-hash: true,  
-inject: 'body',  
-chunks: ['impressum'],  
-filename: 'impressum.html',  
-// favicon: '',  
-minify: {  
-collapseWhitespace: true,  
-keepClosingSlash: true,  
-removeComments: true,  
-// removeRedundantAttributes: true,  
-// removeScriptTypeAttributes: true,  
-// removeStyleLinkTypeAttributes: true,  
-useShortDoctype: true  
-}  
+ template: path.resolve(\_\_dirname, 'src', 'base', 'template', 'index.html'),  
+ hash: true,  
+ inject: 'body',  
+ chunks: ['impressum'],  
+ filename: 'impressum.html',  
+ // favicon: '',  
+ minify: {  
+  collapseWhitespace: true,  
+  keepClosingSlash: true,  
+  removeComments: true,  
+  // removeRedundantAttributes: true,  
+  // removeScriptTypeAttributes: true,  
+  // removeStyleLinkTypeAttributes: true,  
+  useShortDoctype: true  
+ }  
 }),
 ```
 
@@ -364,9 +365,9 @@ https://webpack.js.org/configuration/devtool/
 
 ```js
 (  
-https://github.com/terser/terser#minify-options  
-https://webpack.js.org/plugins/source-map-dev-tool-plugin/  
-https://webpack.js.org/plugins/eval-source-map-dev-tool-plugin/  
+ https://github.com/terser/terser#minify-options  
+ https://webpack.js.org/plugins/source-map-dev-tool-plugin/  
+ https://webpack.js.org/plugins/eval-source-map-dev-tool-plugin/  
 )
 ```
 
@@ -424,20 +425,20 @@ npx tailwindcss init
 
 ```js
 module.exports = {  
-content: [
-'./dist/*.{html,js}'
-],  
-theme: {  
-extend: {},  
-},  
-plugins: [],  
+ content: [
+  './dist/*.{html,js}'
+ ],  
+ theme: {  
+  extend: {},  
+ },  
+ plugins: [],  
 }
 ```
 
 ```js
 "scripts": {  
-"test": "echo \"Error: no test specified\" && exit 1",  
-"build": "tailwindcss -i ./src/style.css -o ./dist/style.css --watch"  
+ "test": "echo \"Error: no test specified\" && exit 1",  
+ "build": "tailwindcss -i ./src/style.css -o ./dist/style.css --watch"  
 },
 ```
 
@@ -458,7 +459,7 @@ https://webpack.js.org/loaders/postcss-loader/
 
 ```js
 performance: {  
-hints: false,  
+ hints: false,  
 },
 ```
 
@@ -474,6 +475,15 @@ http://hny.surge.sh/
 npm install --save-dev surge (npm install --global surge) 
 ```js
 "scripts":{  
-"surge-deploy": "surge -p dist -d s-tailwind.surge.sh" (-p=project -d=domain)  
+ "surge-deploy": "surge -p dist -d s-tailwind.surge.sh" (-p=project -d=domain)  
 }
 ```
+
+
+## Alles auf den neusten stand bringen
+
+https://www.npmjs.com/package/npm-check-updates
+
+ncu   
+ncu -u   
+npm i   
