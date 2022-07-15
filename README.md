@@ -17,7 +17,8 @@ oder
 „scripts“: {  
  „build“: „webpack“  
 }  
-//„build:production“: „webpack --config webpack.config.prod.js“ // fals man ein zweiten ConfigFile hat und diesen anstoßen will
+//„build:production“: „webpack --config webpack.config.prod.js“ 
+// fals man ein zweiten ConfigFile hat und diesen anstoßen will
 ```
 
 ### webpack.config.js anlegen:
