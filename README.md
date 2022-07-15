@@ -170,17 +170,19 @@ npm install --save @fortawesome/fontawesome-free
 ```
 
 css:  
-$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
-@import '~@fortawesome/fontawesome-free/scss/fontawesome';
-@import '~@fortawesome/fontawesome-free/scss/solid';
-@import '~@fortawesome/fontawesome-free/scss/regular';
+```css
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';   
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';   
+@import '~@fortawesome/fontawesome-free/scss/solid';    
+@import '~@fortawesome/fontawesome-free/scss/regular';   
+```
 
 ### Für fonts und img Loader:
 
-https://webpack.js.org/guides/asset-modules/  
-https://stackoverflow.com/questions/45489897/load-fonts-with-webpack-and-font-face  
-mit der Konfiguration wandelt der URL Loader Fils kleiner denn 100kb in base64 um,  
-ist größer dann wird der File vom Server geladen
+https://webpack.js.org/guides/asset-modules/    
+https://stackoverflow.com/questions/45489897/load-fonts-with-webpack-and-font-face    
+mit der Konfiguration wandelt der URL Loader Fils kleiner denn 100kb in base64 um,    
+ist größer dann wird der File vom Server geladen.  
 
 npm install url-loader file-loader --save-dev
 
